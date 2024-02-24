@@ -1,0 +1,395 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- This URDF was automatically created by SolidWorks to URDF Exporter! Originally created by Stephen Brawner (brawner@gmail.com) 
+     Commit Version: 1.6.0-4-g7f85cfe  Build Version: 1.6.7995.38578
+     For more information, please see http://wiki.ros.org/sw_urdf_exporter -->
+<robot
+  name="panther_urdf">
+  <link
+    name="base_link">
+    <inertial>
+      <origin
+        xyz="0.00047471596277756 6.93145970603881E-06 0.0184356040161808"
+        rpy="0 0 0" />
+      <mass
+        value="0.709508215614969" />
+      <inertia
+        ixx="0.0011478116985688"
+        ixy="-4.68221897322115E-08"
+        ixz="-2.94406358458754E-07"
+        iyy="0.00117554092618515"
+        iyz="7.86804297849271E-08"
+        izz="0.00215046347527902" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://panther_urdf/meshes/base_link.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.756862745098039 0.768627450980392 0.752941176470588 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://panther_urdf/meshes/base_link.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <link
+    name="forearm_link">
+    <inertial>
+      <origin
+        xyz="0.00235418490933147 0.00857255002587695 0.124469858531248"
+        rpy="0 0 0" />
+      <mass
+        value="3.43106158144225" />
+      <inertia
+        ixx="0.0111168711265614"
+        ixy="-0.000168802691735969"
+        ixz="-0.000299496536540626"
+        iyy="0.0105485377979032"
+        iyz="-0.00109085926242037"
+        izz="0.0108719292330829" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://panther_urdf/meshes/forearm_link.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.756862745098039 0.768627450980392 0.752941176470588 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://panther_urdf/meshes/forearm_link.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="elbow_joint"
+    type="revolute">
+    <origin
+      xyz="0 0 0"
+      rpy="0 0 0" />
+    <parent
+      link="base_link" />
+    <child
+      link="forearm_link" />
+    <axis
+      xyz="0 0 1" />
+    <limit
+      lower="0"
+      upper="3.142"
+      effort="300"
+      velocity="3" />
+  </joint>
+  <link
+    name="upper_arm_link">
+    <inertial>
+      <origin
+        xyz="2.6374222194897E-05 0.288028213736374 0.0640812802262588"
+        rpy="0 0 0" />
+      <mass
+        value="5.76598845768885" />
+      <inertia
+        ixx="0.0535931655303002"
+        ixy="-1.33847189669432E-05"
+        ixz="4.93622585737066E-06"
+        iyy="0.00779524275661101"
+        iyz="2.32856181880412E-07"
+        izz="0.0538768005868116" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://panther_urdf/meshes/upper_arm_link.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.756862745098039 0.768627450980392 0.752941176470588 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://panther_urdf/meshes/upper_arm_link.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="shoulder_lift_joint"
+    type="revolute">
+    <origin
+      xyz="0.0573482780233897 0.208897776409476 0.130478612153435"
+      rpy="1.5707963267949 0 -0.26792729552756" />
+    <parent
+      link="forearm_link" />
+    <child
+      link="upper_arm_link" />
+    <axis
+      xyz="0 0 -1" />
+    <limit
+      lower="-1.57"
+      upper="1.57"
+      effort="200"
+      velocity="3" />
+  </joint>
+  <link
+    name="shoulder_link">
+    <inertial>
+      <origin
+        xyz="0.24625690700553 0.00038791510590841 -0.0649023731311411"
+        rpy="0 0 0" />
+      <mass
+        value="4.97837026325909" />
+      <inertia
+        ixx="0.00585035770850532"
+        ixy="6.63685228053646E-09"
+        ixz="-0.000200012242224393"
+        iyy="0.051561915293179"
+        iyz="-1.52612804186033E-08"
+        izz="0.0517818287178346" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://panther_urdf/meshes/shoulder_link.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.756862745098039 0.768627450980392 0.752941176470588 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://panther_urdf/meshes/shoulder_link.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="shoulder_pan_joint"
+    type="revolute">
+    <origin
+      xyz="0.0130528773762752 0.581033387846565 0.254748304369017"
+      rpy="0 0.0347928578488272 0" />
+    <parent
+      link="upper_arm_link" />
+    <child
+      link="shoulder_link" />
+    <axis
+      xyz="0 0 -1" />
+    <limit
+      lower="-1.57"
+      upper="1.57"
+      effort="200"
+      velocity="3" />
+  </joint>
+  <link
+    name="wrist_1_link">
+    <inertial>
+      <origin
+        xyz="0.0387570008333681 0.00321228579265564 -0.161064934873586"
+        rpy="0 0 0" />
+      <mass
+        value="0.838415771688282" />
+      <inertia
+        ixx="0.00103392576544764"
+        ixy="-3.03375319327428E-05"
+        ixz="1.6347965728039E-05"
+        iyy="0.000964399212835615"
+        iyz="0.000127738626625048"
+        izz="0.000968948432078433" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://panther_urdf/meshes/wrist_1_link.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.756862745098039 0.768627450980392 0.752941176470588 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://panther_urdf/meshes/wrist_1_link.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="wrist_1_joint"
+    type="revolute">
+    <origin
+      xyz="0.564743829482923 0.000387999999999833 -0.00907155684199412"
+      rpy="0 0.233134437678733 0" />
+    <parent
+      link="shoulder_link" />
+    <child
+      link="wrist_1_link" />
+    <axis
+      xyz="-0.231028295268486 0 0.972947031849801" />
+    <limit
+      lower="-1.57"
+      upper="1.57"
+      effort="200"
+      velocity="3" />
+  </joint>
+  <link
+    name="wrist_2_link">
+    <inertial>
+      <origin
+        xyz="0.00340385985301095 0.000485245565873177 0.165853929608396"
+        rpy="0 0 0" />
+      <mass
+        value="0.838415772574633" />
+      <inertia
+        ixx="0.00096591824106628"
+        ixy="1.04503232632636E-05"
+        ixz="-0.000129924206136089"
+        iyy="0.00103628698163325"
+        iyz="1.88987381158496E-05"
+        izz="0.000965067812306471" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://panther_urdf/meshes/wrist_2_link.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.756862745098039 0.768627450980392 0.752941176470588 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://panther_urdf/meshes/wrist_2_link.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="wrist_2_joint"
+    type="revolute">
+    <origin
+      xyz="0.0398550122506154 -0.0558801281680077 -0.165688442967764"
+      rpy="-1.5707963267949 0 0" />
+    <parent
+      link="wrist_1_link" />
+    <child
+      link="wrist_2_link" />
+    <axis
+      xyz="0 0 -1" />
+    <limit
+      lower="-1.57"
+      upper="1.57"
+      effort="100"
+      velocity="2" />
+  </joint>
+  <link
+    name="wrist_3_link">
+    <inertial>
+      <origin
+        xyz="0.000179864158414075 -4.49521605809799E-05 -0.130619959648333"
+        rpy="0 0 0" />
+      <mass
+        value="0.159318682448643" />
+      <inertia
+        ixx="8.22388813747915E-05"
+        ixy="1.07233996620026E-06"
+        ixz="8.72788824078102E-08"
+        iyy="8.75708463879807E-05"
+        iyz="4.50955551179857E-07"
+        izz="0.000149755723758847" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://panther_urdf/meshes/wrist_3_link.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.756862745098039 0.768627450980392 0.752941176470588 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://panther_urdf/meshes/wrist_3_link.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="wrist_3_joint"
+    type="revolute">
+    <origin
+      xyz="-0.0550732044088081 0.00899090628559696 0.170606030818962"
+      rpy="-1.5707963267949 0 1.4263586520871" />
+    <parent
+      link="wrist_2_link" />
+    <child
+      link="wrist_3_link" />
+    <axis
+      xyz="0 0 1" />
+    <limit
+      lower="0"
+      upper="3.142"
+      effort="50"
+      velocity="2" />
+  </joint>
+</robot>
