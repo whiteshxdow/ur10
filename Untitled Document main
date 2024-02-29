@@ -1,3 +1,80 @@
+QUICK RUN:
+1.roscore
+ifconfig
+
+sudo ifconfig enp2s0 192.168.1.10 netmask 255.255.255.0 up
+
+set up robot ip
+
+cd workspace
+
+roslaunch ur_calibration calibration_correction.launch robot_ip:=192.168.1.2 target_filename:="${HOME}/ws/ur10e_calibration.yaml"
+
+replace file
+
+new terminals:
+roslaunch ur_robot_driver ur10e_bringup.launch robot_ip:=192.168.1.2
+
+roslaunch ur_moveit move_group.launch
+
+rosrun ur_moveit loski.py
+
+
+
+
+DETAILED RUN:
+1.Prepare the ROS PC
+Connect Ethernet cable from robot to ROS machine
+
+1.1 - Extract calibration information
+
+Each UR robot is calibrated inside the factory giving exact forward and inverse kinematics. To also make use of this in ROS, you first have to extract the calibration information from the robot.
+
+
+$ roslaunch ur_calibration calibration_correction.launch \
+  robot_ip:=<robot_ip> target_filename:="${HOME}/my_robot_calibration.yaml"
+
+For the parameter robot_ip insert the IP address on which the ROS pc can reach the robot. As target_filename provide an absolute path where the result will be saved to.
+
+
+Quick start
+
+Once the driver is built and the externalcontrol URCap is installed on the robot, you are good to go ahead starting the driver. (Note: We do recommend, though, to extract your robot's calibration first.)
+
+To actually start the robot driver use one of the existing launch files
+
+$ roslaunch ur_robot_driver <robot_type>_bringup.launch robot_ip:=192.168.56.101
+
+where <robot_type> is one of ur3, ur5, ur10, ur3e, ur5e, ur10e, ur16e, ur20. Note that in this example we load the calibration parameters for the robot "ur10_example".
+
+If you calibrated your robot before, pass that calibration to the launch file:
+
+$ roslaunch ur_robot_driver <robot_type>_bringup.launch robot_ip:=192.168.56.101 \
+  kinematics_config:=$(rospack find ur_calibration)/etc/ur10_example_calibration.yaml
+
+If the parameters in that file don't match the ones reported from the robot, the driver will output an error during startup, but will remain usable.
+
+
+
+Once the robot driver is started, load the previously generated program on the robot panel that will start the External Control program node and execute it. From that moment on the robot is fully functional. You can make use of the Pause function or even Stop (:stop_button:) the program. Simply press the Play button (:arrow_forward:) again and the ROS driver will reconnect.
+
+Inside the ROS terminal running the driver you should see the output Robot ready to receive control commands.
+
+To control the robot using ROS, use the action server on
+
+/scaled_pos_joint_traj_controller/follow_joint_trajectory
+
+THE RQT_JOINT_TRAJECTORY_CONTROLLER GUI:
+rosrun rqt_joint_trajectory_controller rqt_joint_trajectory_controller
+
+You may need to install rqt_joint_trajectory_controller by running:
+
+sudo apt install ros-<ROS-DISTRO>-rqt-joint-trajectory-controller
+
+where ROS-DISTRO will be replaced with your version of ROS.
+
+
+
 1.roscore
 ifconfig
 
@@ -23,62 +100,7 @@ rosrun ur_moveit loski.py
 
 
 
-[ERROR] [1709134857.622489866]: Could not get response to RTDE communication pause request from robot
 
-
-Prepare the ROS PC
-
-For using the driver make sure it is installed (either by the debian package or built from source inside a catkin workspace).
-Extract calibration information
-
-Each UR robot is calibrated inside the factory giving exact forward and inverse kinematics. To also make use of this in ROS, you first have to extract the calibration information from the robot.
-
-Though this step is not necessary to control the robot using this driver, it is highly recommended to do so, as otherwise endeffector positions might be off in the magnitude of centimeters.
-
-For this, there exists a helper script:
-
-$ roslaunch ur_calibration calibration_correction.launch \
-  robot_ip:=<robot_ip> target_filename:="${HOME}/my_robot_calibration.yaml"
-
-For the parameter robot_ip insert the IP address on which the ROS pc can reach the robot. As target_filename provide an absolute path where the result will be saved to.
-
-We recommend keeping calibrations for all robots in your organization in a common package. See the package's documentation for details.
-Quick start
-
-Once the driver is built and the externalcontrol URCap is installed on the robot, you are good to go ahead starting the driver. (Note: We do recommend, though, to extract your robot's calibration first.)
-
-To actually start the robot driver use one of the existing launch files
-
-$ roslaunch ur_robot_driver <robot_type>_bringup.launch robot_ip:=192.168.56.101
-
-where <robot_type> is one of ur3, ur5, ur10, ur3e, ur5e, ur10e, ur16e, ur20. Note that in this example we load the calibration parameters for the robot "ur10_example".
-
-If you calibrated your robot before, pass that calibration to the launch file:
-
-$ roslaunch ur_robot_driver <robot_type>_bringup.launch robot_ip:=192.168.56.101 \
-  kinematics_config:=$(rospack find ur_calibration)/etc/ur10_example_calibration.yaml
-
-If the parameters in that file don't match the ones reported from the robot, the driver will output an error during startup, but will remain usable.
-
-For more information on the launch file's parameters see its own documentation.
-
-Once the robot driver is started, load the previously generated program on the robot panel that will start the External Control program node and execute it. From that moment on the robot is fully functional. You can make use of the Pause function or even Stop (:stop_button:) the program. Simply press the Play button (:arrow_forward:) again and the ROS driver will reconnect.
-
-Inside the ROS terminal running the driver you should see the output Robot ready to receive control commands.
-
-To control the robot using ROS, use the action server on
-
-/scaled_pos_joint_traj_controller/follow_joint_trajectory
-
-Use this with any client interface such as MoveIt! or simply the rqt_joint_trajectory_controller gui:
-
-rosrun rqt_joint_trajectory_controller rqt_joint_trajectory_controller
-
-You may need to install rqt_joint_trajectory_controller by running:
-
-sudo apt install ros-<ROS-DISTRO>-rqt-joint-trajectory-controller
-
-where ROS-DISTRO will be replaced with your version of ROS.
 
 
 
