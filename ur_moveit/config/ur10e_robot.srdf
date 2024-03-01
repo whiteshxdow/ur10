@@ -34,46 +34,6 @@
         <joint name="wrist_2_joint" value="-1.57"/>
         <joint name="wrist_3_joint" value="0"/>
     </group_state>
-    <group_state name="loop_pose_1" group="full_arm">
-        <joint name="elbow_joint" value="2.0507"/>
-        <joint name="shoulder_lift_joint" value="-2.0071"/>
-        <joint name="shoulder_pan_joint" value="0.6981"/>
-        <joint name="wrist_1_joint" value="-1.658"/>
-        <joint name="wrist_2_joint" value="4.1887"/>
-        <joint name="wrist_3_joint" value="0"/>
-    </group_state>
-    <group_state name="loop_pose_2" group="full_arm">
-        <joint name="elbow_joint" value="0.9163"/>
-        <joint name="shoulder_lift_joint" value="-0.8727"/>
-        <joint name="shoulder_pan_joint" value="-0.0873"/>
-        <joint name="wrist_1_joint" value="-0.9599"/>
-        <joint name="wrist_2_joint" value="4.5378"/>
-        <joint name="wrist_3_joint" value="0"/>
-    </group_state>
-    <group_state name="loop_pose_3" group="full_arm">
-        <joint name="elbow_joint" value="1.5271"/>
-        <joint name="shoulder_lift_joint" value="-1.2217"/>
-        <joint name="shoulder_pan_joint" value="-0.7854"/>
-        <joint name="wrist_1_joint" value="-1.1344"/>
-        <joint name="wrist_2_joint" value="4.5378"/>
-        <joint name="wrist_3_joint" value="-0.1745"/>
-    </group_state>
-    <group_state name="loop_pose_4" group="full_arm">
-        <joint name="elbow_joint" value="2.6179"/>
-        <joint name="shoulder_lift_joint" value="-2.8798"/>
-        <joint name="shoulder_pan_joint" value="-0.1745"/>
-        <joint name="wrist_1_joint" value="-1.9198"/>
-        <joint name="wrist_2_joint" value="4.5378"/>
-        <joint name="wrist_3_joint" value="-0.1745"/>
-    </group_state>
-    <group_state name="zero_pose" group="full_arm">
-        <joint name="elbow_joint" value="0"/>
-        <joint name="shoulder_lift_joint" value="0"/>
-        <joint name="shoulder_pan_joint" value="0"/>
-        <joint name="wrist_1_joint" value="0"/>
-        <joint name="wrist_2_joint" value="0"/>
-        <joint name="wrist_3_joint" value="0"/>
-    </group_state>
     <!--DISABLE COLLISIONS: By default it is assumed that any link of the robot could potentially come into collision with any other link in the robot. This tag disables collision checking between a specified pair of links. -->
     <disable_collisions link1="base_link_inertia" link2="shoulder_link" reason="Adjacent"/>
     <disable_collisions link1="base_link_inertia" link2="upper_arm_link" reason="Never"/>

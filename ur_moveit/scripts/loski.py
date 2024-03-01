@@ -23,13 +23,13 @@ if __name__ == '__main__':
     robot = moveit_commander.RobotCommander()
     scene = moveit_commander.PlanningSceneInterface()
 
-    poses = ["home", "straight_up", "loop_pose_1" , "loop_pose_2" , "loop_pose_3", "loop_pose_4" ]  # List of poses to iterate through
+    poses = ["home", "straight_up"]  # List of poses to iterate through
     try:
-        while not rospy.is_shutdown():  # Check for ROS shutdown signal
+        while True:  # Infinite loop
             for pose_name in poses:
                 print(f"Moving to {pose_name} pose")
                 move_to_named_pose(pose_name)
-                rospy.sleep(2)  # Wait for 2 seconds between poses for visibility
+                time.sleep(2)  # Wait for 2 seconds between poses for visibility
     except rospy.ROSInterruptException:
         pass
     except KeyboardInterrupt:
